@@ -4,6 +4,9 @@ describe('JavaScript tests', function() {
   it('timePassed should equal 0', function () {
     expect(timePassed).toEqual(0);
   });
+  it('formatTime should return 01:20:27.46 for 4827463', function () {
+    expect(formatTime(4827463)).toEqual('01:20:27.46');
+  })
 
 });
 
