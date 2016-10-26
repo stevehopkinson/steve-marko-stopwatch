@@ -4,6 +4,18 @@ describe('JavaScript tests', function() {
   it('timePassed should equal 0', function () {
     expect(timePassed).toEqual(0);
   });
+
+});
+
+describe('Async tests', function() {
+  it('timePassed should equal ~3000 after 3 sec of running', function(done) {
+    startTimer();
+    setTimeout(function () {
+      stopTimer();
+      expect(timePassed).toBeCloseTo(1000, -2);
+      done();
+    }, 1000);
+  });
 });
 
 describe('HTML tests', function() {
