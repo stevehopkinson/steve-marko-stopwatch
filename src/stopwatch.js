@@ -1,6 +1,7 @@
 var running, watch, timePassed, prevTime, currTime;
 
 var watchDisplay = document.getElementById("watchDisplay");
+var startStop = document.getElementById("startStop");
 var buttons = document.querySelectorAll("button");
 for (var i = 0; i < buttons.length; i++) {
   var button = buttons[i];
@@ -48,7 +49,7 @@ function formatTime (time) {
 
 function updateDOM () {
   watchDisplay.textContent = formatTime(timePassed);
-  // startStop.innerHTML = running ? 'Stop' : 'Start';
+  startStop.textContent = running ? 'Stop' : 'Start';
 }
 
 function handleInput (id) {
@@ -58,6 +59,7 @@ function handleInput (id) {
   };
 
   inputs[id]();
+  updateDOM();
 }
 
 initialise();
