@@ -48,6 +48,8 @@ function formatTime (time) {
 
 function updateDOM () {
   watchDisplay.textContent = formatTime(timePassed);
+  clock.update(timePassed);
+  clockDiv.innerHTML = clockContainer.outerHTML;
   // startStop.innerHTML = running ? 'Stop' : 'Start';
 }
 
