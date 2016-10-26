@@ -1,8 +1,4 @@
-var running;
-var watch;
-var timePassed;
-var prevTime;
-var currTime;
+var running, watch, timePassed, prevTime, currTime;
 
 var watchDisplay = document.getElementById("watchDisplay");
 var buttons = document.querySelectorAll("button");
@@ -42,38 +38,22 @@ function update () {
 }
 
 function formatTime (time) {
-  var hours = Math.floor(time / 3600000);
-  time -= hours * 3600000;
-  var minutes = Math.floor(time / 60000);
-  time -= minutes * 60000;
-  var seconds = Math.floor(time / 1000);
-  time -= seconds * 1000;
-  var centiseconds = Math.floor(time/10);
+  var centiseconds = Math.floor((time / 10) % 100);
+  var seconds = Math.floor((time / 1000) % 60);
+  var minutes = Math.floor((time / (60 * 1000)) % 60);
+  var hours = Math.floor((time / (60 * 60 * 1000)) % 24);
 
-  while (hours.toString().length < 2) {
-    hours = "0" + hours;
-  }
-  while (minutes.toString().length < 2) {
-    minutes = "0" + minutes;
-  }
-  while (seconds.toString().length < 2) {
-    seconds = "0" + seconds;
-  }
-  while (centiseconds.toString().length < 2) {
-    centiseconds = "0" + centiseconds;
-  }
-  return `${hours}:${minutes}:${seconds}.${centiseconds}`;
+  return `${hours}:${minutes}:${seconds}.${centiseconds}`.replace(/(^|\:|\.)(\d)(?!\d)/g, (x,a,b) => a+'0'+b);;
 }
 
 function updateDOM () {
   watchDisplay.textContent = formatTime(timePassed);
+  // startStop.innerHTML = running ? 'Stop' : 'Start';
 }
 
 function handleInput (id) {
   var inputs = {
-    startStop : function () {
-      running ? stopTimer() : startTimer();
-    },
+    startStop : running ? stopTimer : startTimer,
     reset : initialise
   };
 
