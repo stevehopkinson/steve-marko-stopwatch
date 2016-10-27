@@ -11,6 +11,9 @@ for (var i = 0; i < buttons.length; i++) {
   });
 };
 
+var startIcon = '<i class="fa fa-play-circle" aria-hidden="true"></i>';
+var pauseIcon = '<i class="fa fa-pause-circle" aria-hidden="true"></i>';
+
 function initialise () {
   running = false;
   window.clearInterval(watch);
@@ -52,7 +55,7 @@ function formatTime (time) {
 
 function updateDOM () {
   watchDisplay.textContent = formatTime(timePassed);
-  buttonText.textContent = running ? 'Stop' : 'Start';
+  buttonText.innerHTML = running ? pauseIcon : startIcon;
 }
 
 function handleInput (id) {
