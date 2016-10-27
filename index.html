@@ -11,17 +11,11 @@
     <link rel="stylesheet" href="src/main.css" media="screen" title="no title">
   </head>
   <body>
-    <h1 class="header">Stopwatch</h1>
-    <div class="container">
-      <div class="stopwatch__wrapper col-4">
-        <section class="stopwatch">
-          <h2 class="stopwatch__name">Stopwatch 1</h2>
-          <p class="stopwatch__display" id="watchDisplay">00:00:00.00</p>
-          <button class="stopwatch__button" id="startStop" name="button"><span id="buttonText"><i class="fa fa-play-circle" aria-hidden="true"></i></span></button>
-          <button class="stopwatch__button" id="reset" name="button"><i class="fa fa-stop-circle" aria-hidden="true"></i></i></button>
-        </section>
-      </div>
-    </div>
+    <header class="header">
+      <h1 class="header__title">Stopwatch</h1>
+      <button class="header__button" id="newStopwatchButton" name="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+    </header>
+    <div class="container" id="stopwatchContainer"></div>
     <script type="text/javascript" src="src/stopwatch.js"></script>
   </body>
 </html>
