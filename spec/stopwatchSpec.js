@@ -1,6 +1,10 @@
-jasmine.getFixtures().fixturesPath = 'src/';
+jasmine.getFixtures().fixturesPath = '.';
 
 describe('JavaScript tests', function() {
+  beforeEach(function() {
+    loadFixtures('index.html');
+  });
+  
   it('timePassed should equal 0', function () {
     expect(timePassed).toEqual(0);
   });
@@ -11,13 +15,36 @@ describe('JavaScript tests', function() {
 });
 
 describe('Async tests', function() {
-  it('timePassed should equal ~3000 after 3 sec of running', function(done) {
+  beforeEach(function() {
+    loadFixtures('index.html');
+    timePassed = 0;
+  });
+
+  it('timePassed should equal ~500 after 0.5 sec of running', function(done) {
+    startTimer();
+    setTimeout(function () {
+      stopTimer();
+      expect(timePassed).toBeCloseTo(500, -2);
+      done();
+    }, 500);
+  });
+
+  it('timePassed should equal ~1000 after 1 sec of running', function(done) {
     startTimer();
     setTimeout(function () {
       stopTimer();
       expect(timePassed).toBeCloseTo(1000, -2);
       done();
     }, 1000);
+  });
+
+  it('timePassed should equal ~2000 after 2 sec of running', function(done) {
+    startTimer();
+    setTimeout(function () {
+      stopTimer();
+      expect(timePassed).toBeCloseTo(2000, -2);
+      done();
+    }, 2000);
   });
 });
 
@@ -37,4 +64,24 @@ describe('HTML tests', function() {
   it('should have a button with id reset', function () {
       expect(document.getElementById('reset').tagName).toEqual('BUTTON');
   });
+});
+
+describe('DOM manipulation tests', function() {
+  beforeEach(function() {
+    loadFixtures('index.html');
+  });
+
+  it('startStop button text changes to stop when timer started', function (done) {
+    startTimer();
+    expect(document.getElementById('buttonText').textContent).toEqual('Stop');
+    done();
+  });
+
+  it('startStop button text changes to start when timer stopped', function (done) {
+    startTimer();
+    stopTimer();
+    expect(document.getElementById('buttonText').textContent).toEqual('Start');
+    done();
+  });
+
 });
