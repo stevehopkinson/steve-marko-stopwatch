@@ -2,12 +2,13 @@ var running, watch, timePassed, prevTime, currTime;
 
 var watchDisplay = document.getElementById("watchDisplay");
 var startStop = document.getElementById("startStop");
+var buttonText = document.getElementById("buttonText");
 var buttons = document.querySelectorAll("button");
 for (var i = 0; i < buttons.length; i++) {
   var button = buttons[i];
-  button.onclick = function() {
+  button.addEventListener("click", function() {
     handleInput(this.id);
-  };
+  });
 };
 
 function initialise () {
@@ -49,10 +50,11 @@ function formatTime (time) {
 
 function updateDOM () {
   watchDisplay.textContent = formatTime(timePassed);
-  startStop.textContent = running ? 'Stop' : 'Start';
+  buttonText.textContent = running ? 'Stop' : 'Start';
 }
 
 function handleInput (id) {
+  console.log(id);
   var inputs = {
     startStop : running ? stopTimer : startTimer,
     reset : initialise
