@@ -24,11 +24,13 @@ function startTimer () {
   running = true;
   prevTime = (new Date).getTime();
   watch = window.setInterval(update, 11);
+  update();
 }
 
 function stopTimer () {
   running = false;
   window.clearInterval(watch);
+  update();
 }
 
 function update () {
@@ -45,7 +47,7 @@ function formatTime (time) {
   var minutes = Math.floor((time / (60 * 1000)) % 60);
   var hours = Math.floor((time / (60 * 60 * 1000)) % 24);
 
-  return `${hours}:${minutes}:${seconds}.${centiseconds}`.replace(/(^|\:|\.)(\d)(?!\d)/g, (x,a,b) => a+'0'+b);;
+  return `${hours}:${minutes}:${seconds}.${centiseconds}`.replace(/(^|\:|\.)(\d)(?!\d)/g, (x,a,b) => a+'0'+b);
 }
 
 function updateDOM () {
