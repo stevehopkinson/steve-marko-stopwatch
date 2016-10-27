@@ -1,0 +1,57 @@
+html, body {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(227, 227, 227);
+  top: 0;
+  z-index: 10;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.stopwatch {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10%;
+  text-align: center;
+}
+
+.stopwatch__name {
+  text-align: center;
+}
+
+.stopwatch__button {
+  background: none;
+  cursor: pointer;
+  font-size: 3rem;
+  border: none;
+  margin: 0px;
+  padding: 0 20 0 20;
+}
+
+.stopwatch__display {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 1.5rem;
+  text-align: center;
+}

@@ -4,7 +4,7 @@ describe('JavaScript tests', function() {
   beforeEach(function() {
     loadFixtures('index.html');
   });
-  
+
   it('timePassed should equal 0', function () {
     expect(timePassed).toEqual(0);
   });
@@ -71,17 +71,16 @@ describe('DOM manipulation tests', function() {
     loadFixtures('index.html');
   });
 
-  it('startStop button text changes to stop when timer started', function (done) {
+  it('start icon changes to pause icon when timer started', function (done) {
     startTimer();
-    expect(document.getElementById('buttonText').textContent).toEqual('Stop');
+    expect(document.getElementById('buttonText').innerHTML).toEqual('<i class="fa fa-pause-circle" aria-hidden="true"></i>');
     done();
   });
 
-  it('startStop button text changes to start when timer stopped', function (done) {
+  it('pause icon changes to start icon when timer stopped', function (done) {
     startTimer();
     stopTimer();
-    expect(document.getElementById('buttonText').textContent).toEqual('Start');
+    expect(document.getElementById('buttonText').innerHTML).toEqual('<i class="fa fa-play-circle" aria-hidden="true"></i>');
     done();
   });
-
 });

@@ -3,11 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="src/normalize.css" media="screen" title="no title">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/grid.css" media="screen" title="no title">
+    <link rel="stylesheet" href="src/main.css" media="screen" title="no title">
   </head>
   <body>
-    <p id="watchDisplay">00:00:00.00</p>
-    <button id="startStop" name="button"><span id="buttonText">Start</span></button>
-    <button id="reset" name="button">Reset</button>
+    <h1 class="header">Stopwatch</h1>
+    <div class="container">
+      <div class="stopwatch__wrapper col-4">
+        <section class="stopwatch">
+          <h2 class="stopwatch__name">Stopwatch 1</h2>
+          <p class="stopwatch__display" id="watchDisplay">00:00:00.00</p>
+          <button class="stopwatch__button" id="startStop" name="button"><span id="buttonText"><i class="fa fa-play-circle" aria-hidden="true"></i></span></button>
+          <button class="stopwatch__button" id="reset" name="button"><i class="fa fa-stop-circle" aria-hidden="true"></i></i></button>
+        </section>
+      </div>
+    </div>
     <script type="text/javascript" src="src/stopwatch.js"></script>
   </body>
 </html>
