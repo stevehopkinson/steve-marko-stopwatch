@@ -1,30 +1,57 @@
 jasmine.getFixtures().fixturesPath = '.';
 
-describe('JavaScript tests', function() {
+describe('HTML tests', function() {
   beforeEach(function() {
     loadFixtures('index.html');
   });
 
-  it('timePassed should equal 0', function () {
-    expect(timePassed).toEqual(0);
+  it('should have a div tag with id stopwatchContainer', function () {
+      expect(document.getElementById('stopwatchContainer').tagName).toEqual('DIV');
   });
-  it('formatTime should return 01:20:27.46 for 4827463', function () {
-    expect(formatTime(4827463)).toEqual('01:20:27.46');
-  })
 
+  it('should be instantiated with a single clock', function () {
+      expect(stopwatches.length).toEqual(1);
+  });
+
+  it('first clock display should instantiate to 00:00:00.00', function () {
+      expect(document.getElementsByClassName('stopwatch__display')[0].textContent).toEqual('00:00:00.00');
+  });
+
+  it('should be able to create a second stopwatch', function () {
+      createStopwatch();
+      expect(stopwatches.length).toEqual(2);
+  });
+
+  it('timePassed should equal 0 on new clock', function () {
+      createStopwatch();
+      expect(stopwatches[1].getTimePassed()).toEqual(0);
+  })
 });
+
+// describe('JavaScript tests', function() {
+//   beforeEach(function() {
+//     loadFixtures('index.html');
+//   });
+//
+//   it('timePassed should equal 0', function () {
+//     expect(timePassed).toEqual(0);
+//   });
+//   it('formatTime should return 01:20:27.46 for 4827463', function () {
+//     expect(formatTime(4827463)).toEqual('01:20:27.46');
+//   })
+//
+// });
 
 describe('Async tests', function() {
   beforeEach(function() {
     loadFixtures('index.html');
-    timePassed = 0;
   });
 
   it('timePassed should equal ~500 after 0.5 sec of running', function(done) {
-    startTimer();
+    stopwatches[0].start();
     setTimeout(function () {
-      stopTimer();
-      expect(timePassed).toBeCloseTo(500, -2);
+      stopwatches[0].stop();
+      expect(stopwatches[0].getTimePassed()).toBeCloseTo(500, -2);
       done();
     }, 500);
   });
@@ -45,24 +72,6 @@ describe('Async tests', function() {
       expect(timePassed).toBeCloseTo(2000, -2);
       done();
     }, 2000);
-  });
-});
-
-describe('HTML tests', function() {
-  beforeEach(function() {
-    loadFixtures('index.html');
-  });
-
-  it('should have a p tag with id watchDisplay', function () {
-      expect(document.getElementById('watchDisplay').tagName).toEqual('P');
-  });
-
-  it('should have a button with id startStop', function () {
-      expect(document.getElementById('startStop').tagName).toEqual('BUTTON');
-  });
-
-  it('should have a button with id reset', function () {
-      expect(document.getElementById('reset').tagName).toEqual('BUTTON');
   });
 });
 
