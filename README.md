@@ -1,6 +1,8 @@
 # steve-marko-stopwatch
 Week 2 project for Founders and Coders
 
+https://stevehopkinson.github.io/steve-marko-stopwatch/
+
 ## Objectives
 - Stopwatch (start, stop, pause, reset, possibly lap)
 - Update DOM in real time
