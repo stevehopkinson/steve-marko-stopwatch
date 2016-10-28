@@ -19,8 +19,9 @@ var Stopwatch = function () {
   wrapper.appendChild(section);
 
   var name = document.createElement("H2");
-  name.setAttribute("class", "stopwatch__name");
+  name.setAttribute("class", "stopwatch__name fade-on-hover");
   name.textContent = "Stopwatch " + (stopwatches.length + 1);
+  name.setAttribute("contenteditable", "true");
   section.appendChild(name);
 
   var display = document.createElement("P");

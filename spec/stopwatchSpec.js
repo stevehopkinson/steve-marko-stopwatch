@@ -26,6 +26,10 @@ describe('DOM tests', function() {
       createStopwatch();
       expect(stopwatches[1].getTimePassed()).toEqual(0);
   })
+
+  it('stopwatch__name element should be editable', function () {
+      expect(document.querySelector('.stopwatch__name').getAttribute("contenteditable")).toEqual('true');
+  })
 });
 
 describe('Stopwatch tests', function() {
