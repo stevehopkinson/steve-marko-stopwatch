@@ -82,12 +82,13 @@ var Stopwatch = function () {
   }
 
   function formatTime (time) {
-    var centiseconds = Math.floor((time / 10) % 100);
-    var seconds = Math.floor((time / 1000) % 60);
-    var minutes = Math.floor((time / (60 * 1000)) % 60);
-    var hours = Math.floor((time / (60 * 60 * 1000)) % 24);
-
-    return `${hours}:${minutes}:${seconds}.${centiseconds}`.replace(/(^|\:|\.)(\d)(?!\d)/g, (x,a,b) => a+'0'+b);
+    // var centiseconds = Math.floor((time / 10) % 100);
+    // var seconds = Math.floor((time / 1000) % 60);
+    // var minutes = Math.floor((time / (60 * 1000)) % 60);
+    // var hours = Math.floor((time / (60 * 60 * 1000)) % 24);
+    // time = new Date(time);
+    return (new Date(time)).toISOString().substring(11,23)
+    // return `${hours}:${minutes}:${seconds}.${centiseconds}`.replace(/(^|\:|\.)(\d)(?!\d)/g, (x,a,b) => a+'0'+b);
   }
 
   function updateDOM () {
