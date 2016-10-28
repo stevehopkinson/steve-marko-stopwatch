@@ -107,6 +107,18 @@ var Stopwatch = function () {
     return wrapper;
   }
 
+  this.getTimePassed = function() {
+    return timePassed;
+  }
+
+  this.start = function() {
+    startTimer();
+  }
+
+  this.stop = function() {
+    stopTimer();
+  }
+
   initialise();
 };
 
