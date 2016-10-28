@@ -12,7 +12,7 @@ var Stopwatch = function () {
   var running, watch, timePassed, prevTime, currTime;
 
   var wrapper = document.createElement("DIV");
-  wrapper.setAttribute("class", "stopwatch__wrapper col-4");
+  wrapper.setAttribute("class", "stopwatch__wrapper col-4 col-m-6");
 
   var section = document.createElement("SECTION");
   section.setAttribute("class", "stopwatch");
@@ -28,7 +28,7 @@ var Stopwatch = function () {
   section.appendChild(display);
 
   var startStop = document.createElement("BUTTON");
-  startStop.setAttribute("class", "stopwatch__button");
+  startStop.setAttribute("class", "stopwatch__button fade-on-hover");
   section.appendChild(startStop);
 
   var startStopIcon = document.createElement("I");
@@ -37,7 +37,7 @@ var Stopwatch = function () {
   startStop.appendChild(startStopIcon);
 
   var reset = document.createElement("BUTTON");
-  reset.setAttribute("class", "stopwatch__button");
+  reset.setAttribute("class", "stopwatch__button fade-on-hover");
   reset.innerHTML = stopIcon;
   section.appendChild(reset);
 
