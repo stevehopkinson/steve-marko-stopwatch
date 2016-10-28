@@ -1,6 +1,6 @@
 jasmine.getFixtures().fixturesPath = '.';
 
-describe('HTML tests', function() {
+describe('DOM tests', function() {
   beforeEach(function() {
     loadFixtures('index.html');
   });
@@ -28,23 +28,13 @@ describe('HTML tests', function() {
   })
 });
 
-// describe('JavaScript tests', function() {
-//   beforeEach(function() {
-//     loadFixtures('index.html');
-//   });
-//
-//   it('timePassed should equal 0', function () {
-//     expect(timePassed).toEqual(0);
-//   });
-//   it('formatTime should return 01:20:27.46 for 4827463', function () {
-//     expect(formatTime(4827463)).toEqual('01:20:27.46');
-//   })
-//
-// });
-
-describe('Async tests', function() {
+describe('Stopwatch tests', function() {
   beforeEach(function() {
     loadFixtures('index.html');
+  });
+
+  it('timePassed should equal 0', function () {
+    expect(stopwatches[0].getTimePassed()).toEqual(0);
   });
 
   it('timePassed should equal ~500 after 0.5 sec of running', function(done) {
@@ -57,22 +47,35 @@ describe('Async tests', function() {
   });
 
   it('timePassed should equal ~1000 after 1 sec of running', function(done) {
-    startTimer();
+    createStopwatch();
+    stopwatches[1].start();
     setTimeout(function () {
-      stopTimer();
-      expect(timePassed).toBeCloseTo(1000, -2);
+      stopwatches[1].stop();
+      expect(stopwatches[1].getTimePassed()).toBeCloseTo(1000, -2);
       done();
     }, 1000);
   });
 
   it('timePassed should equal ~2000 after 2 sec of running', function(done) {
-    startTimer();
+    createStopwatch();
+    createStopwatch();
+    stopwatches[2].start();
     setTimeout(function () {
-      stopTimer();
-      expect(timePassed).toBeCloseTo(2000, -2);
+      stopwatches[2].stop();
+      expect(stopwatches[2].getTimePassed()).toBeCloseTo(2000, -2);
       done();
     }, 2000);
   });
+
+  it('watchDisplay should show the correct time', function(done) {
+    stopwatches[0].start();
+    setTimeout(function () {
+      stopwatches[0].stop();
+      expect(document.getElementsByClassName('stopwatch__display')[0].textContent).toEqual('00:00:03.50');
+      done();
+    }, 3505);
+  });
+
 });
 
 describe('DOM manipulation tests', function() {
@@ -81,15 +84,15 @@ describe('DOM manipulation tests', function() {
   });
 
   it('start icon changes to pause icon when timer started', function (done) {
-    startTimer();
-    expect(document.getElementById('buttonText').innerHTML).toEqual('<i class="fa fa-pause-circle" aria-hidden="true"></i>');
+    stopwatches[0].start();
+    expect(document.getElementById('startStopIcon').className).toEqual('fa fa-pause-circle');
     done();
   });
 
   it('pause icon changes to start icon when timer stopped', function (done) {
-    startTimer();
-    stopTimer();
-    expect(document.getElementById('buttonText').innerHTML).toEqual('<i class="fa fa-play-circle" aria-hidden="true"></i>');
+    stopwatches[0].start();
+    stopwatches[0].stop();
+    expect(document.getElementById('startStopIcon').className).toEqual('fa fa-play-circle');
     done();
   });
 });

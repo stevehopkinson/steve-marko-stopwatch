@@ -32,6 +32,7 @@ var Stopwatch = function () {
   section.appendChild(startStop);
 
   var startStopIcon = document.createElement("I");
+  startStopIcon.setAttribute("id", "startStopIcon");
   startStopIcon.setAttribute("class", "fa fa-play-circle");
   startStopIcon.setAttribute("aria-hidden", "true");
   startStop.appendChild(startStopIcon);
