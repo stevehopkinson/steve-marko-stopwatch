@@ -8,6 +8,10 @@ var startIconClass = "fa fa-play-circle";
 var pauseIconClass = "fa fa-pause-circle";
 var stopIcon = '<i class="fa fa-stop-circle" aria-hidden="true"></i>';
 
+function toRads (degs) {
+  return degs * Math.PI / 180;
+};
+
 var Stopwatch = function () {
   var running, watch, timePassed, prevTime, currTime;
 
@@ -23,6 +27,11 @@ var Stopwatch = function () {
   name.textContent = "Stopwatch " + (stopwatches.length + 1);
   name.setAttribute("contenteditable", "true");
   section.appendChild(name);
+
+  var clockDiv = document.createElement("DIV");
+  section.appendChild(clockDiv);
+  var clock = new Clock();
+  clockDiv.innerHTML = clock.getDOM().outerHTML;
 
   var display = document.createElement("P");
   display.setAttribute("class", "stopwatch__display");
@@ -78,6 +87,8 @@ var Stopwatch = function () {
     var difference = currTime - prevTime;
     timePassed += difference;
     prevTime = currTime;
+    clock.update(timePassed);
+    clockDiv.innerHTML = clock.getDOM().outerHTML;
     updateDOM();
   }
 
